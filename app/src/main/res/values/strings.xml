@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Feirapp</string>
+    <string name="search">Buscar</string>
+    <string name="new_product">Novo Produto</string>
+    <string name="create_list">Criar Lista</string>
+    <string name="import_list">Importar Lista</string>
+    <string name="title_activity_import_selection">ImportSelection</string>
+
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="qr_code" translatable="false">QR Code</string>
+    <string name="csv" translatable="false">CSV</string>
+    <string name="code_type">Digitar Código</string>
+    <string name="go_back">Voltar</string>
+    <string name="search_product">Buscar Produtos</string>
+    <string name="hello_blank_fragment">Olá fragmento em branco</string>
+    <string name="product_list_label">Lista de Produtos</string>
+</resources>

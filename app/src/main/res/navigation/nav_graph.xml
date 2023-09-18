@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainMenuFragment">
+
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.feirapp.feirapp.fragments.MainMenuFragment"
+        android:label="MainMenuFragment"
+        tools:layout="@layout/fragment_main_menu">
+        <action
+            android:id="@+id/go_to_createList"
+            app:destination="@id/createListFragment" />
+        <action
+            android:id="@+id/go_to_createProduct"
+            app:destination="@id/createProductFragment" />
+        <action
+            android:id="@+id/go_to_searchProducts"
+            app:destination="@id/searchProductsFragment" />
+        <action
+            android:id="@+id/go_to_importTypeSelectionFragment"
+            app:destination="@id/importTypeSelectionFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createListFragment"
+        android:name="com.feirapp.feirapp.fragments.CreateListFragment"
+        android:label="fragment_create_list"
+        tools:layout="@layout/fragment_create_list" />
+    <fragment
+        android:id="@+id/createProductFragment"
+        android:name="com.feirapp.feirapp.fragments.CreateProductFragment"
+        android:label="fragment_create_product"
+        tools:layout="@layout/fragment_create_product" />
+    <fragment
+        android:id="@+id/searchProductsFragment"
+        android:name="com.feirapp.feirapp.fragments.SearchProductsFragment"
+        android:label="fragment_search_products"
+        tools:layout="@layout/fragment_search_products" />
+    <fragment
+        android:id="@+id/importTypeSelectionFragment"
+        android:name="com.feirapp.feirapp.fragments.ImportTypeSelectionFragment"
+        android:label="ImportTypeSelectionFragment"
+        tools:layout="@layout/fragment_import_type_selection">
+        <action
+            android:id="@+id/go_to_qrCodeScanLoadingFragment"
+            app:destination="@id/qrCodeScanLoadingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/qrcodeScanFragment"
+        android:name="com.feirapp.feirapp.fragments.QrcodeScanFragment"
+        android:label="QrcodeScanFragment"
+        tools:layout="@layout/fragment_qrcode_scan">
+        <argument
+            android:name="callback"
+            app:argType="com.feirapp.feirapp.models.ParcelableCallback" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/qrcodeScanResultFragment"
+        android:name="com.feirapp.feirapp.fragments.QrcodeScanResultFragment"
+        android:label="QrcodeScanResultFragment"
+        tools:layout="@layout/fragment_qrcode_scan_result" >
+        <argument
+            android:name="grocerryItemList"
+            app:argType="com.feirapp.feirapp.models.GroceryListItemModel[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/qrCodeScanLoadingFragment"
+        android:name="com.feirapp.feirapp.fragments.QrCodeScanLoadingFragment"
+        android:label="fragment_qr_code_scan_loading"
+        tools:layout="@layout/fragment_qr_code_scan_loading" >
+        <action
+            android:id="@+id/go_to_qrcodeScanFragment"
+            app:destination="@id/qrcodeScanFragment" />
+        <action
+            android:id="@+id/go_to_qrcodeScanResultFragment"
+            app:destination="@id/qrcodeScanResultFragment" />
+    </fragment>
+</navigation>

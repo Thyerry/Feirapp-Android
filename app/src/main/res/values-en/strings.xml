@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Feirapp</string>
+    <string name="search">Search</string>
+    <string name="new_product">Add Product</string>
+    <string name="create_list">Create List</string>
+    <string name="import_list">Import List</string>
+    <string name="title_activity_import_selection">Import Selection</string>
+    <string name="code_type">Type Code</string>
+    <string name="go_back">Back</string>
+    <string name="search_product">Search Products</string>
+    <string name="hello_blank_fragment">Hello Blank Fragment</string>
+    <string name="product_list_label">List of Products</string>
+</resources>
