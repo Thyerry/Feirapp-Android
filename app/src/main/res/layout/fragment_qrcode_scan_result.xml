@@ -13,17 +13,17 @@
         android:padding="16dp"
         android:text="@string/product_list_label"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@id/lv_qrcode_result"
+        app:layout_constraintBottom_toTopOf="@id/rv_qrcode_result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/lv_qrcode_result"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_qrcode_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

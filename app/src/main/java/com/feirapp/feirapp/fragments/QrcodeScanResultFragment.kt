@@ -23,7 +23,6 @@ class QrcodeScanResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val groceryItems = args.grocerryItemList
-        binding.lvQrcodeResult.adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, groceryItems)
     }
 
     override fun onDestroyView() {
