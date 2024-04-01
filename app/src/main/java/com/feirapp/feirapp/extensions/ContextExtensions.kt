@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 
 fun Context.isPermissionGranted(permission: String): Boolean {
@@ -26,4 +27,8 @@ fun Context.openPermissionSetting() {
         it.data = uri
         startActivity(it)
     }
+}
+
+fun Context.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, message, duration).show()
 }

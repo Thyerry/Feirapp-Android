@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.feirapp.feirapp.databinding.FragmentCreateListBinding
+import com.feirapp.feirapp.extensions.toast
+import com.feirapp.feirapp.fragments.modals.AdvancedSearchModal
+import com.feirapp.feirapp.helpers.Utils
 
 
 class CreateListFragment : Fragment() {
@@ -19,6 +22,12 @@ class CreateListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding?.btSearchProducts!!.setOnClickListener{
+            Utils.NotImplYet(this.requireView())
+        }
+        _binding?.btMoreOptions!!.setOnClickListener{
+            AdvancedSearchModal.start(this.parentFragmentManager)
+        }
     }
 
     override fun onDestroyView() {

@@ -25,13 +25,6 @@ class AdapterGroceryListItem(
         holder.txtQuantity.text = groceryItemList[position].quantity.toString()
         holder.txtPrice.text = "R$%.2f".format(groceryItemList[position].price)
         holder.txtTotalPrice.text = "R$%.2f".format(groceryItemList[position].price * groceryItemList[position].quantity)
-
-//        holder.btnEdit.setOnClickListener{
-//            Toast.makeText(context, holder.txtPrice.text, Toast.LENGTH_SHORT).show()
-//        }
-//        holder.btnEdit.setOnClickListener{
-//            Toast.makeText(context, holder.txtMeasure.text, Toast.LENGTH_SHORT).show()
-//        }
     }
 
     inner class GroceryListItemViewHolder(binding: ImportGroceryItemListItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -40,7 +33,5 @@ class AdapterGroceryListItem(
         val txtQuantity = binding.tvGroceryItemListItemQuantity
         val txtPrice = binding.tvGroceryItemListItemUnitPrice
         val txtTotalPrice = binding.tvGroceryItemListItemTotalPrice
-//        val btnEdit = binding.btnGroceryItemListItemEditButton
-//        val btnDelete = binding.btnGroceryItemListItemDeleteButton
     }
 }

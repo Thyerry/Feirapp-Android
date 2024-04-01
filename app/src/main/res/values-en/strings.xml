@@ -11,4 +11,6 @@
     <string name="search_product">Search Products</string>
     <string name="hello_blank_fragment">Hello Blank Fragment</string>
     <string name="product_list_label">List of Products</string>
+    <string name="no_text">no text</string>
+    <string name="search_product_name">Busca</string>
 </resources>

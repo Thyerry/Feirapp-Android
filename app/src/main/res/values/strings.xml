@@ -15,4 +15,8 @@
     <string name="search_product">Buscar Produtos</string>
     <string name="hello_blank_fragment">Olá fragmento em branco</string>
     <string name="product_list_label">Lista de Produtos</string>
+    <string name="search_product_name">Busca</string>
+    <string name="no_text">no text</string>
+    <string name="busca_externa">Busca externa?</string>
+    <string name="items_per_page">Items Por Página</string>
 </resources>
