@@ -16,7 +16,9 @@ import com.feirapp.feirapp.extensions.cameraPermissionRequest
 import com.feirapp.feirapp.extensions.isPermissionGranted
 import com.feirapp.feirapp.extensions.openPermissionSetting
 import com.feirapp.feirapp.models.GroceryListItemModel
+import com.feirapp.feirapp.models.InvoiceImportResponse
 import com.feirapp.feirapp.models.ParcelableCallback
+import com.feirapp.feirapp.models.Store
 import com.feirapp.feirapp.network.RetrofitClient
 import com.google.mlkit.vision.barcode.common.Barcode
 import retrofit2.Call
@@ -64,6 +66,7 @@ class QrCodeScanLoadingFragment : Fragment() {
                     Barcode.TYPE_URL -> {
                         sefazUrl = qrCode.rawValue.toString()
                     }
+
                     else -> {
                         Toast.makeText(requireActivity(), "Invalid QR Code!", LENGTH_LONG).show()
                     }
@@ -76,25 +79,23 @@ class QrCodeScanLoadingFragment : Fragment() {
 
     private fun startResultFragment() {
         val apiService = RetrofitClient.create()
-        val call = apiService.getGroceryListItemsFromInvoice(sefazUrl)
+        val sefazCode = sefazUrl.split("?p=").last()
+        val call = apiService.importGroceryItemsFromInvoice(sefazCode)
 
-        call.enqueue(object : Callback<List<GroceryListItemModel>> {
+        call.enqueue(object : Callback<InvoiceImportResponse> {
             override fun onResponse(
-                call: Call<List<GroceryListItemModel>>,
-                response: Response<List<GroceryListItemModel>>
+                call: Call<InvoiceImportResponse>,
+                response: Response<InvoiceImportResponse>
             ) {
-                Log.d("NavController", navController?.backQueue!!.last().toString())
                 if (response.isSuccessful) {
-                    apiCalled = !apiCalled
-                    val groceryItemList = response.body()
-                    val groceryItemArray: Array<GroceryListItemModel> =
-                        groceryItemList!!.toTypedArray()
+                    val invoice: InvoiceImportResponse = response.body()!!;
                     val directions =
                         QrCodeScanLoadingFragmentDirections.goToQrcodeScanResultFragment(
-                            groceryItemArray
+                            invoice
                         )
                     navController?.navigate(directions)
                 } else {
+                    Log.d("ApiResponseError", response.raw().toString())
                     Toast.makeText(
                         requireActivity(),
                         "Erro no servidor, tente novamente mais tarde!",
@@ -104,8 +105,8 @@ class QrCodeScanLoadingFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<GroceryListItemModel>>, t: Throwable) {
-                Log.e("ApiCallFailure", "$call qual o erro?")
+            override fun onFailure(call: Call<InvoiceImportResponse>, t: Throwable) {
+                Log.d("ApiCallFailure", "$call qual o erro?")
                 Toast.makeText(
                     requireActivity(),
                     "Erro no servidor, tente novamente mais tarde!",

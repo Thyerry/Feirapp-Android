@@ -66,8 +66,8 @@
         android:label="QrcodeScanResultFragment"
         tools:layout="@layout/fragment_qrcode_scan_result" >
         <argument
-            android:name="grocerryItemList"
-            app:argType="com.feirapp.feirapp.models.GroceryListItemModel[]" />
+            android:name="invoice"
+            app:argType="com.feirapp.feirapp.models.InvoiceImportResponse" />
     </fragment>
     <fragment
         android:id="@+id/qrCodeScanLoadingFragment"

@@ -2,6 +2,7 @@ package com.feirapp.feirapp.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.util.Date
 
 @Parcelize
 data class GroceryListItemModel(
@@ -15,6 +16,6 @@ data class GroceryListItemModel(
     val ncm: String? = "",
     val cest: String? = "",
     val value: Float = 0.0f,
-    val purchaseDate: String = "",
+    val purchaseDate: String,
     val priceHistory: List<PriceLog> = listOf()
 ) : Parcelable
