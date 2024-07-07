@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Store (
+data class StoreModel (
     val name : String,
     val cnpj : String,
     val cep : String,

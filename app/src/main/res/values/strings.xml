@@ -19,4 +19,5 @@
     <string name="no_text">no text</string>
     <string name="busca_externa">Busca externa?</string>
     <string name="items_per_page">Items Por Página</string>
+    <string name="import_list_button_text">IMPORTAR LISTA</string>
 </resources>

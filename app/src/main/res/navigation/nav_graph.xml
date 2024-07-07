@@ -67,7 +67,10 @@
         tools:layout="@layout/fragment_qrcode_scan_result" >
         <argument
             android:name="invoice"
-            app:argType="com.feirapp.feirapp.models.InvoiceImportResponse" />
+            app:argType="com.feirapp.feirapp.models.groceryItem.GetGroceryItemResponse" />
+        <action
+            android:id="@+id/go_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/qrCodeScanLoadingFragment"

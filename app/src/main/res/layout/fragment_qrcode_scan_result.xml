@@ -62,4 +62,13 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/rv_qrcode_result" />
+
+    <Button
+        android:id="@+id/bt_import"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/import_list_button_text"
+        app:layout_constraintTop_toBottomOf="@id/rv_qrcode_result"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

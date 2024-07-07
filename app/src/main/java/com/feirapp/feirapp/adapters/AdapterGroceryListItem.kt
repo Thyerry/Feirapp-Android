@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.feirapp.feirapp.databinding.ImportGroceryItemListItemBinding
-import com.feirapp.feirapp.models.GroceryListItemModel
+import com.feirapp.feirapp.models.groceryItem.GroceryListItemModel
 
 class AdapterGroceryListItem(
     private val context: Context,

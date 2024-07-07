@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.feirapp.feirapp.adapters.AdapterGroceryListItem
@@ -33,11 +34,15 @@ class QrcodeScanResultFragment : Fragment() {
         try {
             super.onViewCreated(view, savedInstanceState)
 
-            adapterGroceryListItem = AdapterGroceryListItem(requireActivity(),  args.invoice.items.toMutableList())
+            adapterGroceryListItem = AdapterGroceryListItem(requireActivity(), args.invoice.items.toMutableList())
             binding.tvStoreName.text = args.invoice.store.name
             binding.rvQrcodeResult.layoutManager = LinearLayoutManager(requireActivity())
             binding.rvQrcodeResult.setHasFixedSize(true)
             binding.rvQrcodeResult.adapter = adapterGroceryListItem
+            binding.btImport.setOnClickListener {
+                val direction = QrcodeScanResultFragmentDirections.goToMainMenuFragment()
+                findNavController().navigate(direction)
+            }
         } catch (e: Exception) {
             println(e)
             val err = e.message

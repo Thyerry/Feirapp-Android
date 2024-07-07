@@ -15,10 +15,8 @@ import com.feirapp.feirapp.databinding.FragmentQrCodeScanLoadingBinding
 import com.feirapp.feirapp.extensions.cameraPermissionRequest
 import com.feirapp.feirapp.extensions.isPermissionGranted
 import com.feirapp.feirapp.extensions.openPermissionSetting
-import com.feirapp.feirapp.models.GroceryListItemModel
-import com.feirapp.feirapp.models.InvoiceImportResponse
+import com.feirapp.feirapp.models.groceryItem.GetGroceryItemResponse
 import com.feirapp.feirapp.models.ParcelableCallback
-import com.feirapp.feirapp.models.Store
 import com.feirapp.feirapp.network.RetrofitClient
 import com.google.mlkit.vision.barcode.common.Barcode
 import retrofit2.Call
@@ -79,16 +77,17 @@ class QrCodeScanLoadingFragment : Fragment() {
 
     private fun startResultFragment() {
         val apiService = RetrofitClient.create()
-        val sefazCode = sefazUrl.split("?p=").last()
-        val call = apiService.importGroceryItemsFromInvoice(sefazCode)
+        val sefazCode = sefazUrl.split("?p  =").last()
+        val call = apiService.getGroceryItemsFromInvoice(sefazCode)
 
-        call.enqueue(object : Callback<InvoiceImportResponse> {
+        call.enqueue(object : Callback<GetGroceryItemResponse> {
             override fun onResponse(
-                call: Call<InvoiceImportResponse>,
-                response: Response<InvoiceImportResponse>
+                call: Call<GetGroceryItemResponse>,
+                response: Response<GetGroceryItemResponse>
             ) {
                 if (response.isSuccessful) {
-                    val invoice: InvoiceImportResponse = response.body()!!;
+                    val invoice: GetGroceryItemResponse = response.body()!!
+                    var groceryItemsArray = invoice.items.toTypedArray()
                     val directions =
                         QrCodeScanLoadingFragmentDirections.goToQrcodeScanResultFragment(
                             invoice
@@ -105,7 +104,7 @@ class QrCodeScanLoadingFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<InvoiceImportResponse>, t: Throwable) {
+            override fun onFailure(call: Call<GetGroceryItemResponse>, t: Throwable) {
                 Log.d("ApiCallFailure", "$call qual o erro?")
                 Toast.makeText(
                     requireActivity(),
