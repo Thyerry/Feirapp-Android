@@ -17,14 +17,17 @@ interface GroceryItemApiService {
     fun getGroceryItems(@Query("query") body: SearchGroceryItemQuery): Call<List<SearchGroceryItemResponse>>
 
     @GET("/api/grocery-item/by-store")
-    fun getGroceryItemsByStore(@Query("storeId") storeId: Number) : Call<List<SearchGroceryItemResponse>>
+    fun getGroceryItemsByStore(@Query("storeId") storeId: Number): Call<List<SearchGroceryItemResponse>>
 
     @GET("/api/grocery-item/by-invoice/")
-    fun getGroceryItemsFromInvoice(@Query("invoiceId") invoiceId : Number): Call<GetGroceryItemResponse>
+    fun getGroceryItemsFromInvoice(@Query("invoiceId") invoiceId: String): Call<GetGroceryItemResponse>
 
     @POST("/api/grocery-item/insert-list")
     fun insertGroceryList(@Body body: InsertGroceryItemList): Call<Unit>
 
     @GET("/api/import/mateus")
-    fun getGroceryListItemsFromMateus(@Query("searchTerm") searchTerm: String?, @Query("count") count: Number = 10): Call<List<GroceryListItemModel>>
+    fun getGroceryListItemsFromMateus(
+        @Query("searchTerm") searchTerm: String?,
+        @Query("count") count: Number = 10
+    ): Call<List<GroceryListItemModel>>
 }

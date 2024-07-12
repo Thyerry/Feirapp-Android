@@ -77,7 +77,7 @@ class QrCodeScanLoadingFragment : Fragment() {
 
     private fun startResultFragment() {
         val apiService = RetrofitClient.create()
-        val sefazCode = sefazUrl.split("?p  =").last()
+        val sefazCode = sefazUrl.split("?p=").last()
         val call = apiService.getGroceryItemsFromInvoice(sefazCode)
 
         call.enqueue(object : Callback<GetGroceryItemResponse> {
@@ -88,10 +88,7 @@ class QrCodeScanLoadingFragment : Fragment() {
                 if (response.isSuccessful) {
                     val invoice: GetGroceryItemResponse = response.body()!!
                     var groceryItemsArray = invoice.items.toTypedArray()
-                    val directions =
-                        QrCodeScanLoadingFragmentDirections.goToQrcodeScanResultFragment(
-                            invoice
-                        )
+                    val directions = QrCodeScanLoadingFragmentDirections.goToQrcodeScanResultFragment(invoice)
                     navController?.navigate(directions)
                 } else {
                     Log.d("ApiResponseError", response.raw().toString())
