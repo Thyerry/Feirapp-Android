@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.feirapp.feirapp.databinding.ImportGroceryItemListItemBinding
-import com.feirapp.feirapp.models.groceryItem.GroceryListItemModel
+import com.feirapp.feirapp.models.groceryItem.dtos.GroceryListItemModel
+import com.feirapp.feirapp.models.groceryItem.responses.GetGroceryItemResponse
 
 class AdapterGroceryListItem(
     private val context: Context,
-    private val groceryItemList: MutableList<GroceryListItemModel>
+    private val groceryItemList: List<GroceryListItemModel>
 ) : RecyclerView.Adapter<AdapterGroceryListItem.GroceryListItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroceryListItemViewHolder {

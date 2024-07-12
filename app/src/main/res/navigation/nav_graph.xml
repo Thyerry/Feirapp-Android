@@ -30,16 +30,19 @@
         android:name="com.feirapp.feirapp.fragments.CreateListFragment"
         android:label="fragment_create_list"
         tools:layout="@layout/fragment_create_list" />
+
     <fragment
         android:id="@+id/createProductFragment"
         android:name="com.feirapp.feirapp.fragments.CreateProductFragment"
         android:label="fragment_create_product"
         tools:layout="@layout/fragment_create_product" />
+
     <fragment
         android:id="@+id/searchProductsFragment"
         android:name="com.feirapp.feirapp.fragments.SearchProductsFragment"
         android:label="fragment_search_products"
         tools:layout="@layout/fragment_search_products" />
+
     <fragment
         android:id="@+id/importTypeSelectionFragment"
         android:name="com.feirapp.feirapp.fragments.ImportTypeSelectionFragment"
@@ -57,7 +60,7 @@
         tools:layout="@layout/fragment_qrcode_scan">
         <argument
             android:name="callback"
-            app:argType="com.feirapp.feirapp.models.ParcelableCallback" />
+            app:argType="com.feirapp.feirapp.models.ScanBarcodeCallback" />
     </fragment>
 
     <fragment
@@ -67,11 +70,13 @@
         tools:layout="@layout/fragment_qrcode_scan_result" >
         <argument
             android:name="invoice"
-            app:argType="com.feirapp.feirapp.models.groceryItem.GetGroceryItemResponse" />
+            app:argType="com.feirapp.feirapp.models.groceryItem.responses.GetGroceryItemResponse"
+            app:nullable="true" />
         <action
             android:id="@+id/go_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/qrCodeScanLoadingFragment"
         android:name="com.feirapp.feirapp.fragments.QrCodeScanLoadingFragment"

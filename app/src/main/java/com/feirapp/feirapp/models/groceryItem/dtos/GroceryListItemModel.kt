@@ -1,4 +1,4 @@
-package com.feirapp.feirapp.models.groceryItem
+package com.feirapp.feirapp.models.groceryItem.dtos
 
 import android.os.Parcelable
 import com.feirapp.feirapp.models.PriceLog
@@ -11,11 +11,7 @@ data class GroceryListItemModel(
     val measureUnit: String = "",
     val quantity: Double = 0.0,
     val barcode: String = "",
-    val storeName: String = "",
-    val category: String = "",
-    val ncm: String? = "",
-    val cest: String? = "",
-    val value: Float = 0.0f,
+    val ncmCode: String? = "",
+    val cestCode: String? = "",
     val purchaseDate: String,
-    val priceHistory: List<PriceLog> = listOf()
 ) : Parcelable

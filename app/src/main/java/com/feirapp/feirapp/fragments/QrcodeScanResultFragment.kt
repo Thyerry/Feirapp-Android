@@ -12,10 +12,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.feirapp.feirapp.adapters.AdapterGroceryListItem
 import com.feirapp.feirapp.databinding.FragmentQrcodeScanResultBinding
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Date
 
 class QrcodeScanResultFragment : Fragment() {
 
@@ -33,18 +29,16 @@ class QrcodeScanResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         try {
             super.onViewCreated(view, savedInstanceState)
-
-            adapterGroceryListItem = AdapterGroceryListItem(requireActivity(), args.invoice.items.toMutableList())
-            binding.tvStoreName.text = args.invoice.store.name
+            adapterGroceryListItem = AdapterGroceryListItem(requireActivity(), args.invoice?.items!!.toMutableList())
+            binding.tvStoreName.text = args.invoice?.store!!.name
             binding.rvQrcodeResult.layoutManager = LinearLayoutManager(requireActivity())
             binding.rvQrcodeResult.setHasFixedSize(true)
-            binding.rvQrcodeResult.adapter = adapterGroceryListItem
+            binding.rvQrcodeResult.adapter = this.adapterGroceryListItem
             binding.btImport.setOnClickListener {
                 val direction = QrcodeScanResultFragmentDirections.goToMainMenuFragment()
                 findNavController().navigate(direction)
             }
         } catch (e: Exception) {
-            println(e)
             val err = e.message
             Log.d("Exception", "$err")
         }

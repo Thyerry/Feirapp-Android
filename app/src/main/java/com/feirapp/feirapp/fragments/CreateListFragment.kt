@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import com.feirapp.feirapp.databinding.FragmentCreateListBinding
 import com.feirapp.feirapp.fragments.modals.AdvancedSearchModal
 import com.feirapp.feirapp.helpers.Utils
-import com.feirapp.feirapp.models.groceryItem.SearchGroceryItemQuery
-import com.feirapp.feirapp.models.groceryItem.SearchGroceryItemResponse
+import com.feirapp.feirapp.models.groceryItem.queries.SearchGroceryItemQuery
+import com.feirapp.feirapp.models.groceryItem.responses.SearchGroceryItemResponse
 import com.feirapp.feirapp.network.RetrofitClient
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Response

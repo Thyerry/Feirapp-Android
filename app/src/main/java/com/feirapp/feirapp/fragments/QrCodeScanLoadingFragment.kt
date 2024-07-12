@@ -15,8 +15,8 @@ import com.feirapp.feirapp.databinding.FragmentQrCodeScanLoadingBinding
 import com.feirapp.feirapp.extensions.cameraPermissionRequest
 import com.feirapp.feirapp.extensions.isPermissionGranted
 import com.feirapp.feirapp.extensions.openPermissionSetting
-import com.feirapp.feirapp.models.groceryItem.GetGroceryItemResponse
-import com.feirapp.feirapp.models.ParcelableCallback
+import com.feirapp.feirapp.models.groceryItem.responses.GetGroceryItemResponse
+import com.feirapp.feirapp.models.ScanBarcodeCallback
 import com.feirapp.feirapp.network.RetrofitClient
 import com.google.mlkit.vision.barcode.common.Barcode
 import retrofit2.Call
@@ -57,7 +57,7 @@ class QrCodeScanLoadingFragment : Fragment() {
     }
 
     private fun startScannerFragment() {
-        val callback = ParcelableCallback(
+        val callback = ScanBarcodeCallback(
             onScan = { barcodes ->
                 val qrCode = barcodes.first()
                 when (qrCode.valueType) {
@@ -87,7 +87,6 @@ class QrCodeScanLoadingFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     val invoice: GetGroceryItemResponse = response.body()!!
-                    var groceryItemsArray = invoice.items.toTypedArray()
                     val directions = QrCodeScanLoadingFragmentDirections.goToQrcodeScanResultFragment(invoice)
                     navController?.navigate(directions)
                 } else {

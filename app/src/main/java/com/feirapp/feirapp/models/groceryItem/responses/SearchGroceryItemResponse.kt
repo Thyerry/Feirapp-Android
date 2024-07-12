@@ -1,4 +1,4 @@
-package com.feirapp.feirapp.models.groceryItem
+package com.feirapp.feirapp.models.groceryItem.responses
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
