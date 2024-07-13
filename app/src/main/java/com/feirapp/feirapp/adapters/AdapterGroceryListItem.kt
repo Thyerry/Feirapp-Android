@@ -22,7 +22,7 @@ class AdapterGroceryListItem(
 
     override fun onBindViewHolder(holder: GroceryListItemViewHolder, position: Int) {
         holder.txtName.text = groceryItemList[position].name
-        holder.txtMeasure.text = groceryItemList[position].measureUnit
+        holder.txtMeasure.text = groceryItemList[position].measureUnit.stringValue
         holder.txtQuantity.text = groceryItemList[position].quantity.toString()
         holder.txtPrice.text = "R$%.2f".format(groceryItemList[position].price)
         holder.txtTotalPrice.text = "R$%.2f".format(groceryItemList[position].price * groceryItemList[position].quantity)

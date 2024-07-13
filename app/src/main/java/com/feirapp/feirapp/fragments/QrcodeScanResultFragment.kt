@@ -42,7 +42,8 @@ class QrcodeScanResultFragment : Fragment() {
             val store = args.invoice?.store!!
             val items = args.invoice?.items!!
 
-            adapterGroceryListItem = AdapterGroceryListItem(requireActivity(), items.toMutableList())
+            adapterGroceryListItem =
+                AdapterGroceryListItem(requireActivity(), items.toMutableList())
             binding.tvStoreName.text = store.name
             binding.rvQrcodeResult.layoutManager = LinearLayoutManager(requireActivity())
             binding.rvQrcodeResult.setHasFixedSize(true)
@@ -52,10 +53,14 @@ class QrcodeScanResultFragment : Fragment() {
                 val insertList = InsertGroceryItemList(items, store)
                 val caller = apiService.insertGroceryList(insertList)
 
-                caller.enqueue(object: Callback<Unit>{
+                caller.enqueue(object : Callback<Unit> {
                     override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                         Utils.NotImplYet(view)
-                        Toast.makeText(requireActivity(), "Produtos salvos com sucesso!", LENGTH_LONG)
+                        Toast.makeText(
+                            requireActivity(),
+                            "Produtos salvos com sucesso!",
+                            LENGTH_LONG
+                        )
                         val direction = QrcodeScanResultFragmentDirections.goToMainMenuFragment()
                         findNavController().navigate(direction)
                     }
@@ -64,7 +69,6 @@ class QrcodeScanResultFragment : Fragment() {
                         Utils.NotImplYet(view)
                     }
                 })
-
             }
         } catch (e: Exception) {
             val err = e.message
