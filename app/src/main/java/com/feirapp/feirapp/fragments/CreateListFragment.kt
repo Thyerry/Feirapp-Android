@@ -16,7 +16,6 @@ import retrofit2.Response
 import retrofit2.Call
 import retrofit2.Callback
 
-
 class CreateListFragment : Fragment() {
     private var _binding: FragmentCreateListBinding? = null
     private val binding get() = _binding!!
@@ -42,7 +41,7 @@ class CreateListFragment : Fragment() {
                     Snackbar.make(view, "Funcionou", Snackbar.LENGTH_SHORT).show()
                 }
 
-                override fun onFailure(call : Call<List<SearchGroceryItemResponse>>, t : Throwable){
+                override fun onFailure(call: Call<List<SearchGroceryItemResponse>>, t: Throwable) {
                     Snackbar.make(view, "Não Funcionou", Snackbar.LENGTH_SHORT).show()
                 }
             })

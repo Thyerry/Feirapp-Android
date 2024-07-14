@@ -1,6 +1,5 @@
 package com.feirapp.feirapp.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -33,7 +32,6 @@ class QrcodeScanResultFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         try {
             super.onViewCreated(view, savedInstanceState)
@@ -42,25 +40,23 @@ class QrcodeScanResultFragment : Fragment() {
             val store = args.invoice?.store!!
             val items = args.invoice?.items!!
 
-            adapterGroceryListItem =
-                AdapterGroceryListItem(requireActivity(), items.toMutableList())
+            adapterGroceryListItem = AdapterGroceryListItem(requireActivity(), items.toMutableList())
             binding.tvStoreName.text = store.name
             binding.rvQrcodeResult.layoutManager = LinearLayoutManager(requireActivity())
             binding.rvQrcodeResult.setHasFixedSize(true)
             binding.rvQrcodeResult.adapter = this.adapterGroceryListItem
 
             binding.btImport.setOnClickListener {
-                val insertList = InsertGroceryItemList(items, store)
+                    val insertList = InsertGroceryItemList(items, store)
                 val caller = apiService.insertGroceryList(insertList)
 
                 caller.enqueue(object : Callback<Unit> {
                     override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                        Utils.NotImplYet(view)
                         Toast.makeText(
                             requireActivity(),
                             "Produtos salvos com sucesso!",
                             LENGTH_LONG
-                        )
+                        ).show()
                         val direction = QrcodeScanResultFragmentDirections.goToMainMenuFragment()
                         findNavController().navigate(direction)
                     }

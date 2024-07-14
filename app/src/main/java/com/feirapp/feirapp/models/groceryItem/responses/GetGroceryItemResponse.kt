@@ -6,7 +6,7 @@ import com.feirapp.feirapp.models.groceryItem.dtos.GroceryListItemModel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class GetGroceryItemResponse (
+data class GetGroceryItemResponse(
     val store: StoreModel,
     var items: List<GroceryListItemModel>
-): Parcelable
+) : Parcelable

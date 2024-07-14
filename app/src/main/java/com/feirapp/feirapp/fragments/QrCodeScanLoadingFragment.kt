@@ -86,10 +86,16 @@ class QrCodeScanLoadingFragment : Fragment() {
                 response: Response<GetGroceryItemResponse>
             ) {
                 if (response.isSuccessful) {
-                    val invoice: GetGroceryItemResponse = response.body()!!
-                    val directions = QrCodeScanLoadingFragmentDirections.goToQrcodeScanResultFragment(invoice)
-                    navController?.navigate(directions)
-                } else {
+                    try{
+                        val invoice: GetGroceryItemResponse = response.body()!!
+                        val directions = QrCodeScanLoadingFragmentDirections.goToQrcodeScanResultFragment(invoice)
+                        navController?.navigate(directions)
+                    }
+                    catch (e: Exception) {
+                        Log.d("MinhaException", e.message.toString())
+                    }
+                }
+                else {
                     Log.d("ApiResponseError", response.raw().toString())
                     Toast.makeText(
                         requireActivity(),
