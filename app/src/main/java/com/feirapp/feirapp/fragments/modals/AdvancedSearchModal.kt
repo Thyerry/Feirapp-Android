@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentManager
 import com.feirapp.feirapp.databinding.AdvancedSearchModalBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class AdvancedSearchModal: BottomSheetDialogFragment() {
+class AdvancedSearchModal : BottomSheetDialogFragment() {
     private var _binding: AdvancedSearchModalBinding? = null
     private val binding get() = _binding!!
 

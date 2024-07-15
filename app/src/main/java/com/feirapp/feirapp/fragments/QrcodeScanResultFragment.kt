@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.feirapp.feirapp.adapters.AdapterGroceryListItem
 import com.feirapp.feirapp.databinding.FragmentQrcodeScanResultBinding
+import com.feirapp.feirapp.extensions.toast
 import com.feirapp.feirapp.helpers.Utils
 import com.feirapp.feirapp.models.groceryItem.requests.InsertGroceryItemList
 import com.feirapp.feirapp.network.RetrofitClient
@@ -25,7 +26,6 @@ class QrcodeScanResultFragment : Fragment() {
     private var _binding: FragmentQrcodeScanResultBinding? = null
     private val binding get() = _binding!!
     private val args by navArgs<QrcodeScanResultFragmentArgs>()
-    private lateinit var adapterGroceryListItem: AdapterGroceryListItem
 
     override fun onCreateView(inflater: LayoutInflater, group: ViewGroup?, saved: Bundle?): View {
         _binding = FragmentQrcodeScanResultBinding.inflate(inflater, group, false)
@@ -33,42 +33,35 @@ class QrcodeScanResultFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         try {
-            super.onViewCreated(view, savedInstanceState)
             val apiService = RetrofitClient.create()
-
             val store = args.invoice?.store!!
             val items = args.invoice?.items!!
 
-            adapterGroceryListItem = AdapterGroceryListItem(requireActivity(), items.toMutableList())
-            binding.tvStoreName.text = store.name
-            binding.rvQrcodeResult.layoutManager = LinearLayoutManager(requireActivity())
-            binding.rvQrcodeResult.setHasFixedSize(true)
-            binding.rvQrcodeResult.adapter = this.adapterGroceryListItem
+            binding.apply {
+                tvStoreName.text = store.name
+                tvDate.text = items.first().purchaseDate
+                rvQrcodeResult.layoutManager = LinearLayoutManager(requireActivity())
+                rvQrcodeResult.setHasFixedSize(true)
+                rvQrcodeResult.adapter = AdapterGroceryListItem(requireActivity(), items.toMutableList())
+            }
 
             binding.btImport.setOnClickListener {
-                    val insertList = InsertGroceryItemList(items, store)
-                val caller = apiService.insertGroceryList(insertList)
+                apiService.insertGroceryList(InsertGroceryItemList(items, store))
+                    .enqueue(object : Callback<Unit> {
+                        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                            requireActivity().toast("Produtos salvos com sucesso", LENGTH_LONG)
+                            findNavController().navigate(QrcodeScanResultFragmentDirections.goToMainMenuFragment())
+                        }
 
-                caller.enqueue(object : Callback<Unit> {
-                    override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                        Toast.makeText(
-                            requireActivity(),
-                            "Produtos salvos com sucesso!",
-                            LENGTH_LONG
-                        ).show()
-                        val direction = QrcodeScanResultFragmentDirections.goToMainMenuFragment()
-                        findNavController().navigate(direction)
-                    }
-
-                    override fun onFailure(call: Call<Unit>, t: Throwable) {
-                        Utils.NotImplYet(view)
-                    }
-                })
+                        override fun onFailure(call: Call<Unit>, t: Throwable) {
+                            Utils.NotImplYet(view)
+                        }
+                    })
             }
         } catch (e: Exception) {
-            val err = e.message
-            Log.d("Exception", "$err")
+            Log.d("Exception", e.message ?: "Unknown Error")
         }
     }
 
