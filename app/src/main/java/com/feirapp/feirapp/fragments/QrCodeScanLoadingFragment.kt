@@ -15,6 +15,7 @@ import com.feirapp.feirapp.databinding.FragmentQrCodeScanLoadingBinding
 import com.feirapp.feirapp.extensions.cameraPermissionRequest
 import com.feirapp.feirapp.extensions.isPermissionGranted
 import com.feirapp.feirapp.extensions.openPermissionSetting
+import com.feirapp.feirapp.extensions.toast
 import com.feirapp.feirapp.models.groceryItem.responses.GetGroceryItemResponse
 import com.feirapp.feirapp.models.ScanBarcodeCallback
 import com.feirapp.feirapp.network.RetrofitClient
@@ -66,7 +67,7 @@ class QrCodeScanLoadingFragment : Fragment() {
                     }
 
                     else -> {
-                        Toast.makeText(requireActivity(), "Invalid QR Code!", LENGTH_LONG).show()
+                        requireActivity().toast("Invalid QR Code!", LENGTH_LONG)
                     }
                 }
             }
@@ -78,25 +79,34 @@ class QrCodeScanLoadingFragment : Fragment() {
     private fun startResultFragment() {
         val apiService = RetrofitClient.create()
         val sefazCode = sefazUrl.split("?p=").last()
-        val call = apiService.getGroceryItemsFromInvoice(sefazCode)
 
-        call.enqueue(object : Callback<GetGroceryItemResponse> {
-            override fun onResponse(
-                call: Call<GetGroceryItemResponse>,
-                response: Response<GetGroceryItemResponse>
-            ) {
-                if (response.isSuccessful) {
-                    try{
-                        val invoice: GetGroceryItemResponse = response.body()!!
-                        val directions = QrCodeScanLoadingFragmentDirections.goToQrcodeScanResultFragment(invoice)
-                        navController?.navigate(directions)
+        apiService.getGroceryItemsFromInvoice(sefazCode).enqueue(
+            object : Callback<GetGroceryItemResponse> {
+                override fun onResponse(call: Call<GetGroceryItemResponse>, response: Response<GetGroceryItemResponse>) {
+                    if (response.isSuccessful) {
+                        try {
+                            val invoice: GetGroceryItemResponse = response.body()!!
+                            val directions = QrCodeScanLoadingFragmentDirections.goToQrcodeScanResultFragment(invoice)
+                            navController?.navigate(directions)
+
+                        }
+                        catch (e: Exception) {
+                            Log.d("MinhaException", e.message.toString())
+                        }
                     }
-                    catch (e: Exception) {
-                        Log.d("MinhaException", e.message.toString())
+                    else {
+                        Log.d("ApiResponseError", response.raw().toString())
+                        Toast.makeText(
+                            requireActivity(),
+                            "Erro no servidor, tente novamente mais tarde!",
+                            LENGTH_LONG
+                        ).show()
+                        navController?.navigateUp()
                     }
                 }
-                else {
-                    Log.d("ApiResponseError", response.raw().toString())
+
+                override fun onFailure(call: Call<GetGroceryItemResponse>, t: Throwable) {
+                    Log.d("ApiCallFailure", "$call qual o erro?")
                     Toast.makeText(
                         requireActivity(),
                         "Erro no servidor, tente novamente mais tarde!",
@@ -105,17 +115,7 @@ class QrCodeScanLoadingFragment : Fragment() {
                     navController?.navigateUp()
                 }
             }
-
-            override fun onFailure(call: Call<GetGroceryItemResponse>, t: Throwable) {
-                Log.d("ApiCallFailure", "$call qual o erro?")
-                Toast.makeText(
-                    requireActivity(),
-                    "Erro no servidor, tente novamente mais tarde!",
-                    LENGTH_LONG
-                ).show()
-                navController?.navigateUp()
-            }
-        })
+        )
     }
 
     private fun requestCameraAndStartScanner() {

@@ -13,4 +13,8 @@
     <string name="product_list_label">List of Products</string>
     <string name="no_text">no text</string>
     <string name="search_product_name">Busca</string>
+    <string name="busca_externa">External Search?</string>
+    <string name="items_per_page">Itens Per Page</string>
+    <string name="import_list_button_text">IMPORT LIST</string>
+    <string name="import_type_screen_title">Select the import type</string>
 </resources>

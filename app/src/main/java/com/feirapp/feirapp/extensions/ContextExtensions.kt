@@ -16,9 +16,10 @@ fun Context.isPermissionGranted(permission: String): Boolean {
 inline fun Context.cameraPermissionRequest(crossinline positive: () -> Unit) {
     AlertDialog.Builder(this)
         .setTitle("Camera Permission Required")
-        .setMessage("Without accessim the camera it is not possible to scan QR Codes!")
+        .setMessage("Without accessing the camera it is not possible to scan QR Codes!")
         .setPositiveButton("Allow Camera") { _, _ -> positive.invoke() }
-        .setNegativeButton("Cancel") { _, _ -> }.show()
+        .setNegativeButton("Cancel") { _, _ -> }
+        .show()
 }
 
 fun Context.openPermissionSetting() {

@@ -20,4 +20,7 @@
     <string name="busca_externa">Busca externa?</string>
     <string name="items_per_page">Items Por Página</string>
     <string name="import_list_button_text">IMPORTAR LISTA</string>
+    <string name="import_type_screen_title">Selecione o tipo de importação</string>
+    <string name="alt_name">Nome alternativo</string>
+    <string name="brand_name">Nome da marca</string>
 </resources>

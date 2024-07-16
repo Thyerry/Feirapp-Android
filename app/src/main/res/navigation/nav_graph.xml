@@ -71,7 +71,7 @@
         <argument
             android:name="invoice"
             app:argType="com.feirapp.feirapp.models.groceryItem.responses.GetGroceryItemResponse"
-            app:nullable="true" />
+            app:nullable="false" />
         <action
             android:id="@+id/go_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />

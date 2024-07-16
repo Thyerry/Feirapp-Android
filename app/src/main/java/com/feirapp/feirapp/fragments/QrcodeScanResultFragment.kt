@@ -36,8 +36,7 @@ class QrcodeScanResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         try {
             val apiService = RetrofitClient.create()
-            val store = args.invoice?.store!!
-            val items = args.invoice?.items!!
+            val (store, items) = args.invoice
 
             binding.apply {
                 tvStoreName.text = store.name
