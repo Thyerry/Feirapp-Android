@@ -3,14 +3,16 @@ package com.feirapp.feirapp.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.feirapp.feirapp.databinding.ImportGroceryItemListItemBinding
-import com.feirapp.feirapp.extensions.toast
+import com.feirapp.feirapp.fragments.modals.EditItemModal
 import com.feirapp.feirapp.models.groceryItem.dtos.GroceryListItemModel
 
 class AdapterGroceryListItem(
     private val context: Context,
-    private val groceryItemList: List<GroceryListItemModel>
+    private val groceryItemList: List<GroceryListItemModel>,
+    private val fragmentManager: FragmentManager
 ) : RecyclerView.Adapter<AdapterGroceryListItem.GroceryListItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroceryListItemViewHolder {
@@ -25,12 +27,14 @@ class AdapterGroceryListItem(
         with(holder) {
             groceryItemList[position].apply {
                 txtName.text = name
-                txtMeasure.text = measureUnit.stringValue
+                txtMeasure.text = measureUnit?.stringValue
                 txtQuantity.text = quantity.toString()
                 txtPrice.text = "R$%.2f".format(price)
                 txtTotalPrice.text = "R$%.2f".format(price * quantity)
             }
-            btnAdd.setOnClickListener { context.toast("Adicionado ao carrinho") }
+            btnAdd.setOnClickListener {
+                EditItemModal.start(fragmentManager, groceryItemList[position])
+            }
         }
     }
 

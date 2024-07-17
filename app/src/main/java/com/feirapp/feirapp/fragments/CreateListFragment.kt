@@ -29,15 +29,15 @@ class CreateListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val apiService = RetrofitClient.create()
 
+        _binding?.btMoreOptions!!.setOnClickListener {
+            AdvancedSearchModal.start(this.parentFragmentManager)
+        }
         _binding?.btSearchProducts!!.setOnClickListener {
             Utils.NotImplYet(this.requireView())
-            val call = apiService.getGroceryItems(SearchGroceryItemQuery(null, 0, 0, 10))
+            val call = apiService.getGroceryItems(SearchGroceryItemQuery(null, null, 0, 10))
 
             call.enqueue(object : Callback<List<SearchGroceryItemResponse>> {
-                override fun onResponse(
-                    call: Call<List<SearchGroceryItemResponse>>,
-                    response: Response<List<SearchGroceryItemResponse>>
-                ) {
+                override fun onResponse(call: Call<List<SearchGroceryItemResponse>>, response: Response<List<SearchGroceryItemResponse>>) {
                     Snackbar.make(view, "Funcionou", Snackbar.LENGTH_SHORT).show()
                 }
 
@@ -46,9 +46,7 @@ class CreateListFragment : Fragment() {
                 }
             })
         }
-        _binding?.btMoreOptions!!.setOnClickListener {
-            AdvancedSearchModal.start(this.parentFragmentManager)
-        }
+
     }
 
     override fun onDestroyView() {

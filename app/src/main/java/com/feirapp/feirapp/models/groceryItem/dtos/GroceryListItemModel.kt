@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 data class GroceryListItemModel(
     val name: String = "",
     val price: Double = 0.0,
-    val measureUnit: MeasureUnitEnum,
+    val measureUnit: MeasureUnitEnum?,
     val quantity: Double = 0.0,
     val barcode: String = "",
     val ncmCode: String? = "",

@@ -23,4 +23,6 @@
     <string name="import_type_screen_title">Selecione o tipo de importação</string>
     <string name="alt_name">Nome alternativo</string>
     <string name="brand_name">Nome da marca</string>
+    <string name="item_name">nome do item</string>
+    <string name="save">SALVAR</string>
 </resources>

@@ -27,7 +27,7 @@ interface GroceryItemApiService {
     @GET("/api/grocery-item/by-store")
     fun getRandomGroceryItems(@Query("quantity") quantity: Number): Call<GetGroceryItemFromStoreIdResponse>
 
-    @GET("/api/grocery-item/by-invoice/")
+    @GET("/api/grocery-item/by-invoice")
     fun getGroceryItemsFromInvoice(@Query("invoiceId") invoiceId: String): Call<GetGroceryItemResponse>
 
     @POST("/api/grocery-item/insert-list")

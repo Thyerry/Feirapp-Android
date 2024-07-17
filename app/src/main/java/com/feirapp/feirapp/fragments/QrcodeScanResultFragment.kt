@@ -37,27 +37,28 @@ class QrcodeScanResultFragment : Fragment() {
         try {
             val apiService = RetrofitClient.create()
             val (store, items) = args.invoice
+            val fragmentManager = this.parentFragmentManager;
 
             binding.apply {
                 tvStoreName.text = store.name
                 tvDate.text = items.first().purchaseDate
                 rvQrcodeResult.layoutManager = LinearLayoutManager(requireActivity())
                 rvQrcodeResult.setHasFixedSize(true)
-                rvQrcodeResult.adapter = AdapterGroceryListItem(requireActivity(), items.toMutableList())
+                rvQrcodeResult.adapter =
+                    AdapterGroceryListItem(requireActivity(), items.toMutableList(), fragmentManager)
             }
 
             binding.btImport.setOnClickListener {
-                apiService.insertGroceryList(InsertGroceryItemList(items, store))
-                    .enqueue(object : Callback<Unit> {
-                        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                            requireActivity().toast("Produtos salvos com sucesso", LENGTH_LONG)
-                            findNavController().navigate(QrcodeScanResultFragmentDirections.goToMainMenuFragment())
-                        }
+                apiService.insertGroceryList(InsertGroceryItemList(items, store)).enqueue(object : Callback<Unit> {
+                    override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                        requireActivity().toast("Produtos salvos com sucesso", LENGTH_LONG)
+                        findNavController().navigate(QrcodeScanResultFragmentDirections.goToMainMenuFragment())
+                    }
 
-                        override fun onFailure(call: Call<Unit>, t: Throwable) {
-                            Utils.NotImplYet(view)
-                        }
-                    })
+                    override fun onFailure(call: Call<Unit>, t: Throwable) {
+                        Utils.NotImplYet(view)
+                    }
+                })
             }
         } catch (e: Exception) {
             Log.d("Exception", e.message ?: "Unknown Error")
