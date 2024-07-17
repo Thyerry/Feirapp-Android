@@ -44,8 +44,7 @@ class QrcodeScanResultFragment : Fragment() {
                 tvDate.text = items.first().purchaseDate
                 rvQrcodeResult.layoutManager = LinearLayoutManager(requireActivity())
                 rvQrcodeResult.setHasFixedSize(true)
-                rvQrcodeResult.adapter =
-                    AdapterGroceryListItem(requireActivity(), items.toMutableList(), fragmentManager)
+                rvQrcodeResult.adapter = AdapterGroceryListItem(requireActivity(), items.toMutableList(), fragmentManager)
             }
 
             binding.btImport.setOnClickListener {

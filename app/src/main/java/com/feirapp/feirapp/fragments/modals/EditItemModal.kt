@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.FragmentManager
 import com.feirapp.feirapp.databinding.EditItemModalBinding
 import com.feirapp.feirapp.extensions.toast
@@ -20,6 +21,25 @@ class EditItemModal(private val item: GroceryListItemModel) : BottomSheetDialogF
             tvItemName.text = item.name
             btSave.setOnClickListener {
                 requireActivity().toast("Item salvo com sucesso")
+            }
+        }
+
+        binding.tietAltName.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                binding.tilBrandName.requestFocus()
+                true
+            } else {
+                false
+            }
+        }
+
+        binding.tietBrandName.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                binding.tilBrandName.clearFocus()
+                binding.tietBrandName.clearFocus()
+                true
+            } else {
+                false
             }
         }
         return binding.root
