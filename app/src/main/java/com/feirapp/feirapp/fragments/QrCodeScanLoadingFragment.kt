@@ -107,11 +107,7 @@ class QrCodeScanLoadingFragment : Fragment() {
 
                 override fun onFailure(call: Call<GetGroceryItemResponse>, t: Throwable) {
                     Log.d("ApiCallFailure", "$call qual o erro?")
-                    Toast.makeText(
-                        requireActivity(),
-                        "Erro no servidor, tente novamente mais tarde!",
-                        LENGTH_LONG
-                    ).show()
+                    Toast.makeText(requireActivity(), "Erro no servidor, tente novamente mais tarde!", LENGTH_LONG).show()
                     navController?.navigateUp()
                 }
             }

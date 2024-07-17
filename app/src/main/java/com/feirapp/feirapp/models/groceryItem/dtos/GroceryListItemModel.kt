@@ -9,6 +9,8 @@ data class GroceryListItemModel(
     val name: String = "",
     val price: Double = 0.0,
     val measureUnit: MeasureUnitEnum?,
+    var brand: String?,
+    var altName: String?,
     val quantity: Double = 0.0,
     val barcode: String = "",
     val ncmCode: String? = "",

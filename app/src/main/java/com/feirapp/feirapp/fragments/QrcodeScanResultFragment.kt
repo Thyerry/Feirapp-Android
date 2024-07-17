@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -35,6 +34,7 @@ class QrcodeScanResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         try {
+
             val apiService = RetrofitClient.create()
             val (store, items) = args.invoice
             val fragmentManager = this.parentFragmentManager;
@@ -44,7 +44,8 @@ class QrcodeScanResultFragment : Fragment() {
                 tvDate.text = items.first().purchaseDate
                 rvQrcodeResult.layoutManager = LinearLayoutManager(requireActivity())
                 rvQrcodeResult.setHasFixedSize(true)
-                rvQrcodeResult.adapter = AdapterGroceryListItem(requireActivity(), items.toMutableList(), fragmentManager)
+                rvQrcodeResult.adapter =
+                    AdapterGroceryListItem(requireActivity(), items.toMutableList(), fragmentManager)
             }
 
             binding.btImport.setOnClickListener {

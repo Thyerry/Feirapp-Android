@@ -12,7 +12,6 @@ class AdvancedSearchModal : BottomSheetDialogFragment() {
     private var _binding: AdvancedSearchModalBinding? = null
     private val binding get() = _binding!!
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         group: ViewGroup?,

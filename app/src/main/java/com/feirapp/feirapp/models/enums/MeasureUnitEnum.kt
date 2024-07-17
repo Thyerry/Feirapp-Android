@@ -23,5 +23,8 @@ enum class MeasureUnitEnum(val stringValue: String) {
     METER("M"),
 
     @SerializedName("PCE")
-    PACKAGE("PCE")
+    PACKAGE("PCE"),
+
+    @SerializedName("CJ")
+    SET("CJ")
 }

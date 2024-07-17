@@ -60,7 +60,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <Button
         android:id="@+id/bt_save"
         android:layout_width="200dp"
