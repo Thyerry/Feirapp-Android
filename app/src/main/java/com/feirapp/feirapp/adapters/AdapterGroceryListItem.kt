@@ -28,7 +28,6 @@ class AdapterGroceryListItem(
         val item = groceryItemList[position]
         val callback = EditBrandAndAltNameCallback { updatedItem ->
             groceryItemList[position].brand = updatedItem.brand
-            holder.txtTest.text = groceryItemList[position].brand
         }
 
         with(holder) {
@@ -41,7 +40,6 @@ class AdapterGroceryListItem(
                 btItem.setOnClickListener {
                     EditItemModal.start(fragmentManager, item, callback)
                 }
-                txtTest.text = brand
             }
         }
     }
@@ -53,6 +51,5 @@ class AdapterGroceryListItem(
         val txtPrice = binding.tvGroceryItemListItemUnitPrice
         val txtTotalPrice = binding.tvGroceryItemListItemTotalPrice
         val btItem = binding.clRoot
-        val txtTest = binding.tvTest
     }
 }

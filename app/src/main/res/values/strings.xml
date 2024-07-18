@@ -25,4 +25,5 @@
     <string name="brand_name">Nome da marca</string>
     <string name="item_name">nome do item</string>
     <string name="save">SALVAR</string>
+    <string name="test">TESTE</string>
 </resources>
