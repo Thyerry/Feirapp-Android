@@ -5,10 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/edit_modal"
-        layout="@layout/edit_item_modal" />
-
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
@@ -68,7 +64,7 @@
             app:layout_constraintTop_toBottomOf="@+id/bt_create_list" />
 
         <Button
-            android:id="@+id/bt_test_modal"
+            android:id="@+id/bt_test_modal1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test"
@@ -76,13 +72,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_create_list" />
 
+        <Button
+            android:id="@+id/bt_test_modal2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="teste de lista"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_test_modal1" />
+
     </LinearLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/cdl_test_modal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        android:visibility="gone">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_test_modal"
@@ -162,7 +168,6 @@
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -14,6 +14,7 @@ import com.feirapp.feirapp.adapters.AdapterGroceryListItem
 import com.feirapp.feirapp.databinding.FragmentQrcodeScanResultBinding
 import com.feirapp.feirapp.extensions.toast
 import com.feirapp.feirapp.helpers.Utils
+import com.feirapp.feirapp.models.groceryItem.dtos.GroceryListItemModel
 import com.feirapp.feirapp.models.groceryItem.requests.InsertGroceryItemList
 import com.feirapp.feirapp.network.RetrofitClient
 import retrofit2.Call
@@ -36,7 +37,9 @@ class QrcodeScanResultFragment : Fragment() {
         try {
 
             val apiService = RetrofitClient.create()
-            val (store, items) = args.invoice
+            val (store, itemList) = args.invoice
+            val items = itemList.toMutableList()
+
             val fragmentManager = this.parentFragmentManager;
 
             binding.apply {
@@ -45,7 +48,12 @@ class QrcodeScanResultFragment : Fragment() {
                 rvQrcodeResult.layoutManager = LinearLayoutManager(requireActivity())
                 rvQrcodeResult.setHasFixedSize(true)
                 rvQrcodeResult.adapter =
-                    AdapterGroceryListItem(requireActivity(), items.toMutableList(), fragmentManager)
+                    AdapterGroceryListItem(requireActivity(), items, fragmentManager)
+            }
+
+            val callback = { updatedItem: GroceryListItemModel, index: Int ->
+                items[index] = updatedItem
+                // TODO - CHAMAR O MODAL DE EDIÇÃO DE ITEM
             }
 
             binding.btImport.setOnClickListener {

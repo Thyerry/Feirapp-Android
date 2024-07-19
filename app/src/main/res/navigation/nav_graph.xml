@@ -23,6 +23,9 @@
             android:id="@+id/go_to_importTypeSelectionFragment"
             app:destination="@id/importTypeSelectionFragment"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/go_to_qrcodeScanResultFragment"
+            app:destination="@id/qrcodeScanResultFragment" />
     </fragment>
 
     <fragment

@@ -14,7 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class EditItemModal(
     private var item: GroceryListItemModel,
-    private var submitItemEdit: ((item: GroceryListItemModel) -> Unit)?
+    private val submitItemEdit: ((item: GroceryListItemModel) -> Unit)?
 ) : BottomSheetDialogFragment() {
 
     private var _binding: EditItemModalBinding? = null
